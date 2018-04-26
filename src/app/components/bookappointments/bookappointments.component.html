@@ -1,4 +1,4 @@
-<h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{hospitals[0].name}}</h4>
+<h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{_resourceService.hospitals[0].name}}</h4>
 <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
 <hr>
 
@@ -20,28 +20,12 @@
           </div>
         </div>
       </div>
-
-      <div class="row">
-        <div class="form-group col-md-12">
-          <label>{{ 'SOURCE_OF_FUNDING ' | translate}}</label>
-          <div class="input-group mb-3">
-            <select name="payor" class="form-control" [(ngModel)]=searchterms.payorId>
-              <option *ngFor="let payor of _resourceService.payors" [value]="payor.id">{{ payor.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.payorId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <div class="row">
         <div class="form-group col-md-12">
           <label>{{ 'DEPARTMENT ' | translate}}</label>
           <div class="input-group mb-3">
-            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!searchterms.hospitalId"
+            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId 
               (ngModelChange)="searchDoctors()">
               <option *ngFor="let department of _resourceService.departments" [value]="department.id">{{ department.name }}</option>
             </select>

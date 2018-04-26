@@ -26,6 +26,7 @@ export class ResourceService {
             this.hospitals.push(data[x]);
           }  
         }
+        console.log(this.hospitals.length);
       });
 
     this.getResource('payors')
