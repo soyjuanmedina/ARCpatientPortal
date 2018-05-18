@@ -6,4 +6,5 @@ export interface UserInterface {
   language: string;
   role: string;
   appointments: any[];
+  status: number;
 }

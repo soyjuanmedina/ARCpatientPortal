@@ -43,6 +43,7 @@
   </div>
 </nav>
 
+
 <!-- The Login Modal -->
 <div class="modal fade" id="LoginModal">
   <div class="modal-dialog">
@@ -56,8 +57,8 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <div *ngIf="alert" class="alert alert-success" role="alert">
-          {{alert}}
+        <div *ngIf="_authService.alert" class="alert alert-success" role="alert">
+          {{_authService.alert}}
         </div>
         <form>
           <div class="row">

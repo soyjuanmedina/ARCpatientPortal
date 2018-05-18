@@ -72,3 +72,5 @@ This are your appointments
 with doctor
 the
 at
+Add to calendar
+Print

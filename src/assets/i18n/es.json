@@ -75,5 +75,6 @@
     "THE": "el",
     "AT": "a las",
     "ADD_TO_CALENDAR": "Añadir al calendario",
-    "PRINT": "Imprimir"
+    "PRINT": "Imprimir",
+    "PLEASE_CONFIRM_YOUR_MAIL": "Por favor, confirme el mail que le hemos enviado para confirmar su usuario antes de continuar con su petición de cita" 
 }

@@ -1,3 +1,9 @@
+<!-- <div class="alert alert-warning" role="alert" *ngIf="_userService.user && !_userService.user?.status">
+   {{ 'PLEASE_CONFIRM_YOUR_MAIL' | translate}}
+</div> -->
+
+
+
 <h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{_resourceService.hospitals[0].name}}</h4>
 <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
 <hr>

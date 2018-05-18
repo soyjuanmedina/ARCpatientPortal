@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+
+// Interceptor http
+import { MyHttpInterceptor } from "./services/httpinterceptor";
 
 // Angular animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -60,7 +63,12 @@ import { AppComponent,
   providers: [
     UserService,
     AuthService,
-    ResourceService
+    ResourceService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MyHttpInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

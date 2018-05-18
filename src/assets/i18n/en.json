@@ -75,5 +75,6 @@
     "THE": "the",
     "AT": "at",
     "ADD_TO_CALENDAR": "Add to calendar",
-    "PRINT": "Print"
+    "PRINT": "Print",
+    "PLEASE_CONFIRM_YOUR_MAIL": "Please confirm the email we have sent you to confirm your user before continuing with your appointment request"
 }

@@ -29,7 +29,8 @@ export class RegisterComponent {
     phoneNumber: '',
     language: '',
     role: '',
-    appointments: []
+    appointments: [],
+    status: 0
   };
 
   constructor(public _userService: UserService,
@@ -99,7 +100,8 @@ export class RegisterComponent {
       phoneNumber: this.forma.value.phoneNumber,
       language: this.forma.value.language,
       role: this.forma.value.role,
-      appointments: []
+      appointments: [],
+      status: 0,
 
   };
 
