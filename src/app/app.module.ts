@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
 // Interceptor http
-import { MyHttpInterceptor } from "./services/httpinterceptor";
+import { AllHttpRequestsInterceptor } from "./interceptors/allhttprequests.interceptor";
 
 // Angular animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -66,7 +66,7 @@ import { AppComponent,
     ResourceService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: MyHttpInterceptor,
+      useClass: AllHttpRequestsInterceptor,
       multi: true
     }
   ],

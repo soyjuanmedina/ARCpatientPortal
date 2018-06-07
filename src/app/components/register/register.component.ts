@@ -5,11 +5,14 @@ import { Router } from '@angular/router';
 import { TranslateService } from 'ng2-translate';
 
 // Interfaces
-import { UserInterface } from '../../interfaces/index.interface';
+import { UserInterface, ResponseDataBase } from '../../interfaces/index.interface';
 
 // Services
 import { UserService,
   ResourceService } from "../../services/index.service";
+
+//Constants
+import { AppConstants } from '../../appConstants';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +20,9 @@ import { UserService,
 })
 export class RegisterComponent {
 
-  alert: string;
-  message: string;
+  alertDanger: string;
+  alertWarning: string;
+  alertSuccess: string;
 
   forma: FormGroup;
 
@@ -28,9 +32,6 @@ export class RegisterComponent {
     email: '',
     phoneNumber: '',
     language: '',
-    role: '',
-    appointments: [],
-    status: 0
   };
 
   constructor(public _userService: UserService,
@@ -46,38 +47,39 @@ export class RegisterComponent {
         Validators.required,
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
       ]),
-      'password': new FormControl({ value: 'demo', disabled: true }),
-      'confirmpassword': new FormControl({ value: 'demo', disabled: true }),
-      'phoneNumber': new FormControl('', Validators.required),
+      'password': new FormControl('', Validators.required),
+      'confirmpassword': new FormControl(),
+      'phoneNumber': new FormControl(),
       'language': new FormControl('', Validators.required),
-      'role': new FormControl('', Validators.required),
     });
+
+    this.forma.controls['confirmpassword'].setValidators([
+      Validators.required,
+      this.notEqualPassword.bind(this.forma)
+    ])
 
   }
 
   ngOnInit() {
-    delete this.alert;
+    delete this.alertDanger;
+    delete this.alertWarning;
+    delete this.alertSuccess;
   }
 
 
   notEqualPassword(control: FormControl): { [s: string]: boolean } {
-
-    // console.log(this);
+    
     let forma: any = this;
-
     if (control.value !== forma.controls['password'].value) {
       return {
-        notEqualsPass: true
+        notequalspass: true
       };
     }
-
     return null;
-
   }
 
   notEqualMail(control: FormControl): { [s: string]: boolean } {
 
-    // console.log(this);
     let forma: any = this;
 
     if (control.value !== forma.controls['email'].value) {
@@ -90,29 +92,32 @@ export class RegisterComponent {
 
   }
 
-
   registerUser() {
-
-    this.user = {
+    delete this.alertDanger;
+    delete this.alertWarning;
+    delete this.alertSuccess;
+    let params = {
       name: this.forma.value.name,
       lastname: this.forma.value.lastname,
       email: this.forma.value.email,
       phoneNumber: this.forma.value.phoneNumber,
       language: this.forma.value.language,
-      role: this.forma.value.role,
-      appointments: [],
-      status: 0,
+      password: this.forma.value.password
+    };
 
-  };
-
-    this._userService.chekIfUserExists(this.user.email).subscribe(
-      res =>{
-        if (!Object.keys(res).length){
-          this._userService.newUser(this.user).subscribe();
-        }
+    this._userService.registerUser(params).subscribe(data => {
+      let response = data as ResponseDataBase;
+      console.log(response);
+      if (response.METADATA.STATUS == AppConstants.STATUS.OK) {
+        this.alertWarning = 'You have been sent an email. Please confirm your email address before logging in';
+        window.scrollTo(0, 0);
+      } else {
+        this.alertDanger = response.METADATA.ERROR_MESSAGE;
+        console.log(this.alertDanger);
+        window.scrollTo(0, 0);
       }
-    );
-    window.scrollTo(0, 0);
+    });
+
   }
 
   resetRegisterForm() {

@@ -54,28 +54,27 @@
               <div class="col">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'LANGUAGE ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'EMAIL ' | translate}}:</span>
                   </div>
-                  <input type="text" class="form-control" value="{{_userService.user.language}}" disabled>
+                  <input type="text" class="form-control" value="{{_userService.user.email}}" disabled>
                 </div>
               </div>
               <div class="col">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'ROLE ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'LANGUAGE ' | translate}}:</span>
                   </div>
-                  <input type="text" class="form-control" value="{{_userService.user.role}}" disabled>
+                  <input type="text" class="form-control" value="{{_userService.user.language}}" disabled>
                 </div>
               </div>
             </div>
-            
-
+          
           </div>
         </div>
 
         <!--Tab Settings-->
         <div class="tab-pane" id="settings">
-          <div class="alert alert-success" role="alert" *ngIf = "alert">
+          <div class="alert alert-info" role="alert" *ngIf = "alert">
             {{alert}}
           </div>
           <form [formGroup]="formaMail" (ngSubmit)="changeMail()">
@@ -141,11 +140,9 @@
                     {{ 'PASSWORD' | translate}}
                   </label>
                   <div class="col-9">
-                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid }" type="password" placeholder="Password"
-                      formControlName="password">
-                      <div class="form-control-feedback invalid-feedback">
-                        {{ 'USER_PASSWORD_IN_DEMO_SITE_IS ' | translate}}
-                      </div>
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid }" 
+                    type="password" placeholder="Password"
+                    formControlName="password">
                   </div>
                 </div>
               </div>
@@ -159,7 +156,7 @@
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
                       formControlName="confirmpassword">
                     <div class="form-control-feedback invalid-feedback">
-                      {{ 'USER_PASSWORD_IN_DEMO_SITE_IS ' | translate}}
+                      {{ 'THE_PASSWORDS_ARE_NOT_EQUAL ' | translate}}
                     </div>
                   </div>
                 </div>
@@ -167,28 +164,18 @@
             </div>
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-primary btn-block" disabled>
+                <button type="submit" class="btn btn-primary btn-block" 
+                        [disabled]="!formaPass.controls['password'].value ||!formaPass.controls['confirmpassword'].value || !formaPass.valid">
                     {{ 'CHANGE_PASSWORD ' | translate}}
                 </button>
               </div>
               <div class="col-md-6">
-                <button type="reset" class="btn btn-secondary btn-block" disabled>
+                <button type="reset" class="btn btn-secondary btn-block">
                   {{ 'RESET ' | translate}}
                 </button>
               </div>
             </div>
           </form>
-
-
-
-
-
-
-
-
-
-
-
 
         </div>
 

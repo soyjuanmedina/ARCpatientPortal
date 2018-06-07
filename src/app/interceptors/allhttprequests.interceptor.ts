@@ -3,12 +3,12 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/c
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class MyHttpInterceptor implements HttpInterceptor {
+export class AllHttpRequestsInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (localStorage.token){
+    if (sessionStorage.token){
       req = req.clone({
         setHeaders: {
-          Authorization: localStorage.token
+          Authorization: sessionStorage.token
         }
       });
     }

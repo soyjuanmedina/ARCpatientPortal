@@ -37,7 +37,7 @@
     "THE_LANGUAGE_IS_MANDATORY": "اللغة إلزامية",
     "ROLE ": "وظيفة",
     "SELECT_THE_ROLE_FOR_THE_USER ": "حدد الدور للمستخدم",
-    "THE ROLE IS MANDATORY": "الدور إلزامي",
+    "THE_ROLE_IS_MANDATORY": "الدور إلزامي",
     "USER_PASSWORD_IN_DEMO_SITE_IS ": "كلمة مرور المستخدم في الموقع التجريبي هي '12345'.",
     "RETYPE_PASSWORD ": "أعد إدخال كلمة السر",
     "THE_PASSWORDS_ARE_NOT_EQUAL ": "كلمات المرور ليست متساوية",

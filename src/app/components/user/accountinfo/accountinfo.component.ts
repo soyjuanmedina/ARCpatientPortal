@@ -2,8 +2,15 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 // Services
-import { UserService,
-  AuthService } from "../../../services/index.service";
+import { UserService, AuthService } from "../../../services/index.service";
+
+// Interfaces
+import { ResponseDataBase } from "../../../interfaces/index.interface";
+
+//Constants
+import { AppConstants } from "../../../appConstants";
+
+
 
 @Component({
   selector: "app-accountinfo",
@@ -28,8 +35,8 @@ export class AccountinfoComponent implements OnInit {
     });
 
     this.formaPass = new FormGroup({
-      "password": new FormControl({ value: "demo", disabled: true }),
-      "confirmpassword": new FormControl({ value: "demo", disabled: true }),
+      "password": new FormControl(),
+      "confirmpassword": new FormControl(),
     });
 
     this.formaPass.controls["confirmpassword"].setValidators([
@@ -47,14 +54,8 @@ export class AccountinfoComponent implements OnInit {
     this._authService.logout();
   }
 
-  changePass() {
-    console.log(this.formaPass.controls);
-
-  }
-
   notEqualMail(control: FormControl): { [s: string]: boolean } {
 
-    // console.log(this);
     const forma: any = this;
 
     if (control.value !== forma.controls["email"].value) {
@@ -69,7 +70,6 @@ export class AccountinfoComponent implements OnInit {
 
   notEqualPassword(control: FormControl): { [s: string]: boolean } {
 
-    // console.log(this);
     const forma: any = this;
 
     if (control.value !== forma.controls["password"].value) {
@@ -83,14 +83,36 @@ export class AccountinfoComponent implements OnInit {
   }
 
   changeMail() {
-    this.user.email = this.formaMail.controls.email.value;
-    this._userService.updateUser(this.user)
-      .subscribe(data => {
-        this.alert = "Your email has been updated";
-        // this.router.navigate(['accountinfo']);
-      },
-        error => console.log(error)
-      );
+    let params = {
+      email: this.formaMail.controls.email.value
+    };
+    this._userService.changeUserMail(params).subscribe(data => {
+      let response = data as ResponseDataBase;
+      if (response.METADATA.STATUS == AppConstants.STATUS.OK) {
+        this.alert = 'You have been successfully change your mail';
+        window.scrollTo(0, 0);
+      } else {
+        this.alert = 'Your email could not be changed';
+        window.scrollTo(0, 0);
+      }
+    });
+  }
+
+  changePass() {
+
+    let params = {
+      password: this.formaPass.controls.password.value
+    };
+    this._userService.changeUserPass(params).subscribe(data => {
+      let response = data as ResponseDataBase;
+      if (response.METADATA.STATUS == AppConstants.STATUS.OK) {
+        this.alert = 'You have been successfully change your password';
+        window.scrollTo(0, 0);
+      } else {
+        this.alert = 'Your password could not be changed';
+        window.scrollTo(0, 0);
+      }
+    });
   }
 
   ngOnInit() {

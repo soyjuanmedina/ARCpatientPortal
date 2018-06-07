@@ -8,12 +8,15 @@ declare var $: any; // TODO show modal in othe way
 // Animations
 import { trigger, state, style, animate, transition, keyframes, query, stagger} from '@angular/animations';
 
+// App Constants
+import { AppConstants } from '../../appConstants';
+
 // Services
 import { ResourceService,
   UserService} from "../../services/index.service";
 
 // Interfaces
-import { SearchtermsInterface } from '../../interfaces/index.interface';
+import { SearchtermsInterface, ResponseDataBase } from '../../interfaces/index.interface';
 
 
 @Component({
@@ -43,7 +46,6 @@ import { SearchtermsInterface } from '../../interfaces/index.interface';
 export class BookappointmentsComponent implements AfterViewInit {
 
   patient;
-
   freeslots = [];
 
   searchterms: SearchtermsInterface = {
@@ -59,22 +61,11 @@ export class BookappointmentsComponent implements AfterViewInit {
 
   constructor(public router: Router,
     public _resourceService: ResourceService,
-    public _userService: UserService) {  }
+    public _userService: UserService) {  
+    }
 
   searchFreeSlots(){
-    this.freeslots = [];
-    this._resourceService.getResource('freeslots')
-      .subscribe(data => {
-        for (var x in data) {
-          if (data[x] != null) {
-            this.freeslots.push(data[x]);
-          }
-        }
-      });
-  }
-
-  searchDoctors(){
-    this._resourceService.searchDoctors(this.searchterms.departmentId);
+    this.freeslots = AppConstants.DUMMYSLOTS;
   }
 
   sendFreeslot(freeslot) {
@@ -87,9 +78,6 @@ export class BookappointmentsComponent implements AfterViewInit {
 
   bookSlot(selectedFreeslot){
     this._userService.user.appointments.push(selectedFreeslot);
-    this._userService.updateUser(this._userService.user).subscribe( data=> {
-      this.router.navigate(['/myappointments'])
-    });
     delete this._resourceService.selectedFreeslot;
   }
 
@@ -110,6 +98,26 @@ export class BookappointmentsComponent implements AfterViewInit {
     this.router.navigate(['/register']);
   }
 
+  getDepartments(hospitalId) {
+    let params = {
+      hospitalId: hospitalId,
+    };
+    this._resourceService.getResourceWithParams('departments', params).subscribe(data => {
+      let response = data as ResponseDataBase;
+      this._resourceService.departments = response.result;
+    });
+  }
+
+  getConsultants(departmentlId) {
+    let params = {
+      departmentId: departmentlId,
+    };
+    this._resourceService.getResourceWithParams('doctors', params).subscribe(data => {
+      let response = data as ResponseDataBase;
+      this._resourceService.doctors = response.result;
+    });
+  }
+
   discardFreeslot(id){
     this.freeslots.splice(id, 1);
   }
@@ -117,6 +125,9 @@ export class BookappointmentsComponent implements AfterViewInit {
   ngAfterViewInit() {
     if (this._resourceService.selectedFreeslot) {
       $('#FreeSlotModal').modal('show');
+    }
+    if (this._resourceService.hospitals.length == 1) {
+      this.getDepartments('0001');
     }
   }
 

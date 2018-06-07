@@ -4,7 +4,4 @@ export interface UserInterface {
   email: string;
   phoneNumber: string;
   language: string;
-  role: string;
-  appointments: any[];
-  status: number;
 }

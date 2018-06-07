@@ -39,10 +39,7 @@ export class AdminComponent implements OnInit {
   }
 
   saveConfiguration(){
-    for (let i = 0; i < this.configurationsParams.length; i++) {
-      this.configurationsParams[i].value = this.configurationForma.value[this.configurationsParams[i].name];
-    }
-    this._resourceService.updateResource('configuration', this.configurationsParams).subscribe();
+    this._resourceService.updateResource('configuration', 'params');
   }
   
 

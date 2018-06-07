@@ -1,13 +1,13 @@
-<div class="alert alert-danger" role="alert" *ngIf="_userService.danger">
-  {{_userService.danger}}
+<div class="alert alert-danger" role="alert" *ngIf="_userService.danger || alertDanger">
+  {{ _userService.danger }} {{ alertDanger }}
 </div>
 
-<div class="alert alert-warning" role="alert" *ngIf="_userService.warning">
-  {{_userService.warning}}
+<div class="alert alert-warning" role="alert" *ngIf="_userService.warning || alertWarning">
+  {{ _userService.warning }} {{ alertWarning }}
 </div>
 
-<div class="alert alert-success" role="alert" *ngIf="_userService.success">
-  {{_userService.success}}
+<div class="alert alert-success" role="alert" *ngIf="_userService.success || alertSuccess">
+  {{ _userService.success }} {{ alertSuccess }}
 </div>
 
 <h4>{{ 'REGISTER' | translate}}</h4>
@@ -121,24 +121,7 @@
       </div>
     
       <div class="col">
-        <div class="form-group row">
-          <label class="col-3 col-form-label">
-            {{ 'ROLE ' | translate}}
-          </label>
-          <div class="col-9">
-            <select class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['role'].valid }"
-                    [ngModel]="user.role" name="role"
-                    placeholder="Select role" formControlName="role">
-              <option value="">
-                {{ 'SELECT_THE_ROLE_FOR_THE_USER ' | translate}}
-              </option>
-              <option *ngFor="let role of _resourceService.roles" [value]="role.id">{{ role.name }}</option>
-            </select>
-            <div *ngIf="forma.get('role').errors?.required" class="form-control-feedback invalid-feedback">
-              {{ 'THE ROLE IS MANDATORY' | translate}}
-            </div>
-          </div>
-        </div>
+        
       </div>
     
     </div>
@@ -155,8 +138,8 @@
           <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['password'].valid }" 
                 type="password" placeholder="Password"
                 formControlName="password" >
-          <div class="form-control-feedback invalid-feedback">
-            {{ 'USER_PASSWORD_IN_DEMO_SITE_IS ' | translate}}
+          <div *ngIf="forma.get('password').errors?.required" class="form-control-feedback invalid-feedback">
+            {{ 'THE_PASSWORD_IS_MANDATORY' | translate}}
           </div>
         </div>
       </div>
@@ -170,10 +153,7 @@
         <div class="col-9">
           <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
             formControlName="confirmpassword">
-          <div class="form-control-feedback invalid-feedback">
-            {{ 'USER_PASSWORD_IN_DEMO_SITE_IS ' | translate}}
-          </div>
-          <div *ngIf="forma.get('confirmpassword').errors?.notEqualsPass && !forma.get('confirmpassword').errors?.required" class="form-control-feedback invalid-feedback">
+          <div *ngIf="forma.get('confirmpassword').errors?.notequalspass && !forma.get('confirmpassword').pristine" class="form-control-feedback invalid-feedback">
             {{ 'THE_PASSWORDS_ARE_NOT_EQUAL ' | translate}}
           </div>
         </div>
@@ -181,10 +161,6 @@
     </div>
 
   </div>
-
-  
-
-
 
   <div class="form-group row">
     <div class="form-group col-md-6">

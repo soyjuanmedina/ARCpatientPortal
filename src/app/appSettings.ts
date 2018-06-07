@@ -3,7 +3,7 @@
 export class AppSettings {
   public static LOGO = 'assets/img/logo_anatomy_white.png';
   public static ADDRESS = 'Golden Mile 1, Office 30. Palm Jumeirah - Dubai';
-  public static NAME = 'Anatomy Rehab Clinic';
+  public static NAME = 'Antomy Rehab Clinic';
   public static PHONE = '04-556 8356 / 0556 86 18 86';
   public static EMAIL = 'info@anatomyrehab.ae';
   public static SITETITLE = 'Patient Portal - Anatomy Rehab Clinic';
@@ -16,5 +16,9 @@ export class AppSettings {
   // public static EMAIL = 'info@schoen-clinic.co.uk';
   // public static SITETITLE = 'Patient Portal - Schoen Clinic';
   // public static FAVICON = 'assets/img/faviconSK.png';
+
+  public static DATABASEURL = 'http://localhost:8080/PatientPortal/';
+
+  // public static DATABASEURL = 'http://portaltest.anatomyrehab.ae:8082/patient-portal/';
 
 }

@@ -15,11 +15,12 @@
         <div class="form-group col-md-12">
           <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
           <div class="input-group mb-3">
-            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId>
+            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId
+             (ngModelChange)="getDepartments($event)">
               <option *ngFor="let hospital of _resourceService.hospitals" [value]="hospital.id">{{ hospital.name }}</option>
             </select>
             <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.hospitalId = null">
+              <button class="input-group-text" (click)="searchterms.hospitalId = null; _resourceService.departments = []">
                 <i class="fas fa-trash-alt"></i>
               </button>
             </div>
@@ -31,8 +32,9 @@
         <div class="form-group col-md-12">
           <label>{{ 'DEPARTMENT ' | translate}}</label>
           <div class="input-group mb-3">
-            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId 
-              (ngModelChange)="searchDoctors()">
+            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId
+              [disabled]="!_resourceService.departments.length"
+              (ngModelChange)="getConsultants($event)">
               <option *ngFor="let department of _resourceService.departments" [value]="department.id">{{ department.name }}</option>
             </select>
             <div class="input-group-append">
@@ -64,22 +66,7 @@
       </div>
 
       <div class="row">
-        
-        <div class="form-group col-md-6">
-          <label>{{ 'SCHEDULE' | translate}}</label>
-          <div class="input-group mb-3">
-            <select name="schedule" class="form-control" [(ngModel)]=searchterms.scheduleId>
-              <option *ngFor="let schedule of _resourceService.schedules" [value]="schedule.id">{{ schedule.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" (click)="searchterms.scheduleId = null">
-                <i class="fas fa-trash-alt"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-12">
           <label>{{ 'DATE ' | translate}}</label>
           <input class="form-control" type="date" [value]="searchterms.date" name="date" [(ngModel)]=searchterms.date>
         </div>
