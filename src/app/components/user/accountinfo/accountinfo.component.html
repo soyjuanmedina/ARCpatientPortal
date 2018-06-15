@@ -17,12 +17,12 @@
 
         <!--Tab profile-->
         <div class="tab-pane active" id="profile">
-          <div class="alert alert-success col-xs-12">
+          <div class="alert alert-success col-sm-12">
               {{ 'IF_THERE_IS_ANY_DISCREPANCIES' | translate}}.
           </div>
           <div class="container">
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{ 'NAME ' | translate}}:</span>
@@ -30,7 +30,7 @@
                   <input type="text" class="form-control" value="{{_userService.user.name}}" disabled>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{ 'LASTNAME ' | translate}}:</span>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{ 'EMAIL ' | translate}}:</span>
@@ -59,12 +59,12 @@
                   <input type="text" class="form-control" value="{{_userService.user.email}}" disabled>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{ 'LANGUAGE ' | translate}}:</span>
                   </div>
-                  <input type="text" class="form-control" value="{{_userService.user.language}}" disabled>
+                  <input type="text" class="form-control" value="{{languageName}}" disabled>
                 </div>
               </div>
             </div>
@@ -82,12 +82,12 @@
               {{ 'CHANGE_YOUR_EMAIL' | translate}}
             </h4>
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
                     {{ 'EMAIL ' | translate}}
                   </label>
-                  <div class="col-9">
+                  <div class="col-md-6">
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['email'].valid }" type="text" placeholder="Email"
                       formControlName="email">
                     <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('email').errors?.required" class="form-control-feedback invalid-feedback">
@@ -96,12 +96,12 @@
                   </div>
                 </div>
               </div>
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
                       {{ 'RETYPE_EMAIL ' | translate}}
                   </label>
-                  <div class="col-9">
+                  <div class="col-md-6">
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['confirmemail'].valid }" type="text" placeholder="Confirm email"
                       formControlName="confirmemail">
                     <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('confirmemail').errors?.required" class="form-control-feedback invalid-feedback">
@@ -134,12 +134,12 @@
           <form [formGroup]="formaPass" (ngSubmit)="changePass()">
             <h4> {{ 'CHANGE_PASSWORD ' | translate}}</h4>
             <div class="row">
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
                     {{ 'PASSWORD' | translate}}
                   </label>
-                  <div class="col-9">
+                  <div class="col-md-6">
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid }" 
                     type="password" placeholder="Password"
                     formControlName="password">
@@ -147,12 +147,12 @@
                 </div>
               </div>
 
-              <div class="col">
+              <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
                       {{ 'RETYPE_PASSWORD ' | translate}}
                   </label>
-                  <div class="col-9">
+                  <div class="col-md-6">
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
                       formControlName="confirmpassword">
                     <div class="form-control-feedback invalid-feedback">

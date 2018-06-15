@@ -48,7 +48,6 @@ export class AuthService {
     this.router.navigate(['/bookappointments']);
     delete this._resourceService.selectedFreeslot;
     this._userService.doLogout();
-    console.log(this._resourceService.defaultLanguage);
     this.translate.use(this._resourceService.defaultLanguage);
   }
 

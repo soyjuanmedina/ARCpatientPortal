@@ -5,6 +5,9 @@ import { SystemJsNgModuleLoaderConfig } from '@angular/core/src/linker/system_js
 import * as moment from 'moment';
 declare var $: any; // TODO show modal in othe way
 
+// Translaate
+import { TranslateService } from 'ng2-translate';
+
 // Animations
 import { trigger, state, style, animate, transition, keyframes, query, stagger} from '@angular/animations';
 
@@ -47,25 +50,29 @@ export class BookappointmentsComponent implements AfterViewInit {
 
   patient;
   freeslots = [];
+  hola;
 
   searchterms: SearchtermsInterface = {
     hospitalId: null,
-    payorId: null,
     departmentId: null,
     doctorId: null,
-    specialtyId: null,
-    date: moment().add(1, 'days').format('YYYY-MM-DD'),
-    scheduleId: null,
+    date: null,
   };
-
 
   constructor(public router: Router,
     public _resourceService: ResourceService,
-    public _userService: UserService) {  
+    public translate: TranslateService,
+    public _userService: UserService) {
+
+      let tomorrow = moment(new Date()).add(1, 'days');
+
+      this.searchterms.date = { year: tomorrow.year(), month: tomorrow.month() + 1, day: tomorrow.date() }
+    
     }
 
   searchFreeSlots(){
     this.freeslots = AppConstants.DUMMYSLOTS;
+    console.log(this.searchterms);
   }
 
   sendFreeslot(freeslot) {
@@ -79,17 +86,15 @@ export class BookappointmentsComponent implements AfterViewInit {
   bookSlot(selectedFreeslot){
     this._userService.user.appointments.push(selectedFreeslot);
     delete this._resourceService.selectedFreeslot;
+    this.router.navigate(['/myappointments']);
   }
 
   reset() {
     this.searchterms = {
       hospitalId: null,
-      payorId: null,
       departmentId: null,
       doctorId: null,
-      specialtyId: null,
-      date: moment().add(1, 'days').format('YYYY-MM-DD'),
-      scheduleId: null,
+      date: null,
     };
     this.freeslots = [];
   }

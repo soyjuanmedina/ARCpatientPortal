@@ -49,7 +49,7 @@ export class MyappointmentsComponent implements OnInit {
 
   deleteAppointment(){
     this._userService.user.appointments.splice(this.indexToCancel, 1);
-    this._userService.updateUser(this._userService.user).subscribe();
+    // this._userService.updateUser(this._userService.user).subscribe();
   }
 
   selectSlotToCancel(slot, index){

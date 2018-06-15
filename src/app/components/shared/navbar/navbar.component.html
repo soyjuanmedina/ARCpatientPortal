@@ -4,12 +4,6 @@
     <ul class="navbar-nav mr-auto">
     </ul>
     <span class="navbar-text">
-      <select class="form-control form-control-sm" (change)="changeLanguage($event.target.value)">
-        <option *ngFor="let language of _resourceService.languages" [value]="language.id"
-                [selected]="language.id == _userService.user?.language">
-          {{ language.name }}
-        </option>
-      </select>
       <div>
         <p></p>
       </div>
@@ -18,7 +12,6 @@
       <button [routerLink]="['register']" class="btn btn-secondary-color btn-sm" *ngIf="!_userService.user">{{ 'REGISTER' | translate }}      </button>
     </span>
   </div>
-
 </nav>
 <nav class="navbar navbar-expand-lg navbar-secondary-color navbar-dark bg-dark">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
@@ -40,6 +33,15 @@
         <a class="nav-link" [routerLink]="['accountinfo']" *ngIf="_userService.user">{{ 'ACCOUNT INFO' | translate}}        </a>
       </li>
     </ul>
+    <ul class="navbar-nav float-right">
+      <li>
+        <select class="form-control form-control-sm" (change)="changeLanguage($event.target.value)">
+          <option *ngFor="let language of _resourceService.languages" [value]="language.id" [selected]="language.id == _userService.user?.language">
+            {{ language.name }}
+          </option>
+        </select>
+      </li>
+      </ul>
   </div>
 </nav>
 
@@ -61,7 +63,7 @@
           {{_authService.alert}}
         </div>
         <form>
-          <div class="row">
+          <div class="form-group row">
             <div class="form-group col-md-6">
               <label>{{ 'USERNAME / EMAIL' | translate}}              </label>
               <input class="form-control" type="text" [value]="login.username" name="username" [(ngModel)]=login.username>
@@ -71,7 +73,7 @@
               <input class="form-control" type="password" [value]="login.password" name="password" [(ngModel)]=login.password>
             </div>
           </div>
-          <div class="row">
+          <div class="form-group row">
             <div class="form-group col-md-6">
               <button type="submit" class="btn btn-main-color btn-block" (click)="doLogin()">
                 {{ 'LOGIN' | translate}}

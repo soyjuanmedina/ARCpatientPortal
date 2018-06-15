@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {TranslateService} from 'ng2-translate';
 import { Title } from '@angular/platform-browser';
 import { AppSettings } from '../app/appSettings';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,8 @@ import { AppSettings } from '../app/appSettings';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  environmentDB = environment.DATABASEURL;
 
   constructor(public translate: TranslateService,
     private titleService: Title) {

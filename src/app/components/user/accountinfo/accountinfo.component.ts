@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 // Services
-import { UserService, AuthService } from "../../../services/index.service";
+import { UserService, ResourceService, AuthService } from "../../../services/index.service";
 
 // Interfaces
 import { ResponseDataBase } from "../../../interfaces/index.interface";
@@ -19,13 +19,20 @@ import { AppConstants } from "../../../appConstants";
 export class AccountinfoComponent implements OnInit {
 
   user;
+  languageName;
   formaMail: FormGroup;
   formaPass: FormGroup;
   alert;
 
   constructor(public _userService: UserService,
+    public _resourceService: ResourceService,
     public _authService: AuthService) {
+
     this.user = this._userService.user;
+
+    if(this._resourceService.languages){
+      this.languageName = this._resourceService.languages.filter(item => item.id === this.user.language).map(item => item.name)
+    }
 
     this.formaMail = new FormGroup({
       "email": new FormControl("", [
@@ -47,6 +54,7 @@ export class AccountinfoComponent implements OnInit {
       Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
       this.notEqualMail.bind(this.formaMail)
     ]);
+
   }
 
   deleteAccount() {
@@ -114,6 +122,7 @@ export class AccountinfoComponent implements OnInit {
       }
     });
   }
+  
 
   ngOnInit() {
     delete this.alert;

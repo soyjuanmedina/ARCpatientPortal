@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  envName: 'dev'
+  envName: 'dev',
+  DATABASEURL: 'http://localhost:8080/PatientPortal/'
 };

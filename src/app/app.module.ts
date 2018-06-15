@@ -9,6 +9,9 @@ import { AllHttpRequestsInterceptor } from "./interceptors/allhttprequests.inter
 // Angular animations
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// Components from ng-bootstrap.github.io
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // Translete
 import {TranslateService,
   TranslateLoader,
@@ -54,6 +57,7 @@ import { AppComponent,
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
+    NgbModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (http: Http) => new TranslateStaticLoader(http, 'assets/i18n', '.json'),

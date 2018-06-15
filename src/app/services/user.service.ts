@@ -29,9 +29,11 @@ export class UserService {
     public http: HttpClient,
     public translate: TranslateService,
     public _resourceService: ResourceService) {
+
     if (typeof sessionStorage.dataPatient !== 'undefined') {
       this.user = JSON.parse(sessionStorage.getItem('dataPatient'));
     }
+    
   }
 
   getPatientData(params) {

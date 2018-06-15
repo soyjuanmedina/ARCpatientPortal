@@ -1,3 +1,5 @@
+import { environment } from "../environments/environment";
+
 // Variables de colores en app/sass/_variables.scss
 
 export class AppSettings {
@@ -17,7 +19,7 @@ export class AppSettings {
   // public static SITETITLE = 'Patient Portal - Schoen Clinic';
   // public static FAVICON = 'assets/img/faviconSK.png';
 
-  public static DATABASEURL = 'http://localhost:8080/PatientPortal/';
+  public static DATABASEURL = environment.DATABASEURL;
 
   // public static DATABASEURL = 'http://portaltest.anatomyrehab.ae:8082/patient-portal/';
 

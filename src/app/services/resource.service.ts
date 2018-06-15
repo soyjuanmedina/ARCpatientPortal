@@ -18,7 +18,6 @@ export class ResourceService {
   departments = [];
   doctors = [];
   languages = [];
-  languagesDatabase = [];
   roles = [];
   schedules = [];
   configurationsParams = [];

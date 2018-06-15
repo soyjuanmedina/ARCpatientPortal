@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  envName: 'prod'
+  envName: 'prod',
+  DATABASEURL: 'https://portaltest.anatomyrehab.ae/patient-portal-back/'
 };
