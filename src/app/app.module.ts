@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Components from ng-bootstrap.github.io
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgDatepickerModule } from 'ng2-datepicker';
 
 // Translete
 import {TranslateService,
@@ -57,6 +58,7 @@ import { AppComponent,
     ReactiveFormsModule,
     HttpClientModule,
     HttpModule,
+    NgDatepickerModule,
     NgbModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,

@@ -5,6 +5,8 @@ import { SystemJsNgModuleLoaderConfig } from '@angular/core/src/linker/system_js
 import * as moment from 'moment';
 declare var $: any; // TODO show modal in othe way
 
+import { DatepickerOptions } from 'ng2-datepicker';
+
 // Translaate
 import { TranslateService } from 'ng2-translate';
 
@@ -50,7 +52,7 @@ export class BookappointmentsComponent implements AfterViewInit {
 
   patient;
   freeslots = [];
-  hola;
+  tomorrow = moment(new Date()).add(1, 'days');
 
   searchterms: SearchtermsInterface = {
     hospitalId: null,
@@ -59,20 +61,28 @@ export class BookappointmentsComponent implements AfterViewInit {
     date: null,
   };
 
+  options: DatepickerOptions = {
+  minYear: 1970,
+  maxYear: 2030,
+  displayFormat: "DD-MM-YYYY",
+  barTitleFormat: 'MMMM YYYY',
+  dayNamesFormat: 'dd',
+  firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
+  minDate: new Date(new Date()), // Minimal selectable date
+};
+
   constructor(public router: Router,
     public _resourceService: ResourceService,
     public translate: TranslateService,
     public _userService: UserService) {
 
-      let tomorrow = moment(new Date()).add(1, 'days');
+    this.searchterms.date = this.tomorrow;
 
-      this.searchterms.date = { year: tomorrow.year(), month: tomorrow.month() + 1, day: tomorrow.date() }
     
     }
 
   searchFreeSlots(){
     this.freeslots = AppConstants.DUMMYSLOTS;
-    console.log(this.searchterms);
   }
 
   sendFreeslot(freeslot) {
@@ -94,7 +104,7 @@ export class BookappointmentsComponent implements AfterViewInit {
       hospitalId: null,
       departmentId: null,
       doctorId: null,
-      date: null,
+      date: { year: this.tomorrow.year(), month: this.tomorrow.month() + 1, day: this.tomorrow.date() }
     };
     this.freeslots = [];
   }

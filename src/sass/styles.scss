@@ -1,6 +1,29 @@
 @import './variables';
 @import './mixins';
 
+.ngx-datepicker-container[_ngcontent-c3]{
+    z-index: 1;
+    
+}
+.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-calendar-container[_ngcontent-c3] {
+
+  width: 240px !important;
+
+}
+
+.is-today{
+  color: white !important;
+}
+
+.is-today:hover{
+  color: white !important;
+  background: #a4a9b1 !important;
+}
+
+.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-input[_ngcontent-c3]{
+    border: 0 !important;
+}
+
 .main-container{
     margin-top: 20px;
     margin-bottom: 20px;
