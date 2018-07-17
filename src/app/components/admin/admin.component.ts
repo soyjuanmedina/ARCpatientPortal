@@ -35,6 +35,7 @@ export class AdminComponent implements OnInit {
             this.configurationsParams.push(data[x]);
           }
         }
+        this._resourceService.loading = false;
       });
   }
 

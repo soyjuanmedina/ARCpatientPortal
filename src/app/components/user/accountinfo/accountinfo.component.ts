@@ -38,7 +38,7 @@ export class AccountinfoComponent implements OnInit {
       "email": new FormControl("", [
         Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
       ]),
-      "confirmemail": new FormControl(),
+      "confirmemail": new FormControl("", []),
     });
 
     this.formaPass = new FormGroup({
@@ -51,7 +51,6 @@ export class AccountinfoComponent implements OnInit {
     ]);
 
     this.formaMail.controls["confirmemail"].setValidators([
-      Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
       this.notEqualMail.bind(this.formaMail)
     ]);
 
@@ -103,6 +102,7 @@ export class AccountinfoComponent implements OnInit {
         this.alert = 'Your email could not be changed';
         window.scrollTo(0, 0);
       }
+      this._userService.loading = false;
     });
   }
 
@@ -120,6 +120,7 @@ export class AccountinfoComponent implements OnInit {
         this.alert = 'Your password could not be changed';
         window.scrollTo(0, 0);
       }
+      this._userService.loading = false;
     });
   }
   

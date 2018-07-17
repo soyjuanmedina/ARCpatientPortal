@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Components from ng-bootstrap.github.io
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgDatepickerModule } from 'ng2-datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 // Translete
 import {TranslateService,
@@ -36,7 +37,8 @@ import { AppComponent,
   RegisterComponent,
   AccountinfoComponent,
   MyappointmentsComponent,
-  AdminComponent } from "./components/index.components";
+  AdminComponent,
+  ConfirmmailComponent } from "./components/index.components";
 
 
 @NgModule({
@@ -48,7 +50,8 @@ import { AppComponent,
     RegisterComponent,
     AccountinfoComponent,
     MyappointmentsComponent,
-    AdminComponent
+    AdminComponent,
+    ConfirmmailComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { AppComponent,
     HttpClientModule,
     HttpModule,
     NgDatepickerModule,
+    BsDatepickerModule.forRoot(),
     NgbModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,

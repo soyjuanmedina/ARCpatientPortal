@@ -19,6 +19,7 @@ import { ResourceService } from "./resource.service";
 @Injectable()
 export class UserService {
   databaseURL = AppSettings.DATABASEURL;
+  loading: boolean;
   user: any;
   danger: string;
   warning: string;
@@ -37,6 +38,7 @@ export class UserService {
   }
 
   getPatientData(params) {
+    this.loading = true;
     this.http.get(this.databaseURL + 'rest/patient', params)
       .subscribe(
         RES => {
@@ -66,6 +68,7 @@ export class UserService {
           this.user.appointments = AppConstants.DUMMYSLOTS;
           this.getPatientAppointments().subscribe(data => {
           });
+          this.loading = false;
         },
         response => {
         },
@@ -76,11 +79,13 @@ export class UserService {
   }
 
   getPatientAppointments() {
+    this.loading = true;
     let url = this.databaseURL + 'rest/patient/appoiments';
     return this.http.post(url, '');
   }
 
   updateUser(user: UserInterface) {
+    this.loading = true;
     sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
     let url = this.databaseURL + 'users/' + this.user.id + '.json';
     let body = JSON.stringify(user);
@@ -94,6 +99,7 @@ export class UserService {
   }
 
   deleteUser(user: UserInterface) {
+    this.loading = true;
     let params = {
       data: ''
     };
@@ -109,17 +115,26 @@ export class UserService {
   }
 
   registerUser(params){
+    this.loading = true;
     let url = this.databaseURL + 'rest/user/registeruser';
     return this.http.post(url, params)
   }
 
   changeUserMail(params) {
+    this.loading = true;
     let url = this.databaseURL + 'rest/user/updateemail';
     return this.http.post(url, params)
   }
 
   changeUserPass(params) {
+    this.loading = true;
     let url = this.databaseURL + 'rest/user/updatepassword';
+    return this.http.post(url, params)
+  }
+
+  setUserData(action, params){
+    this.loading = true;
+    let url = this.databaseURL + 'rest/user/' + action;
     return this.http.post(url, params)
   }
 

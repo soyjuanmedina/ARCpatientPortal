@@ -6,3 +6,4 @@ export { NavbarComponent }    from './shared/navbar/navbar.component';
 export { AccountinfoComponent } from './user/accountinfo/accountinfo.component';
 export { AdminComponent } from './admin/admin.component';
 export { MyappointmentsComponent } from './user/myappointments/myappointments.component';
+export { ConfirmmailComponent } from './confirmmail/confirmmail.component';

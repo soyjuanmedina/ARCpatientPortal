@@ -10,8 +10,8 @@ import { ResponseDataBase } from '../interfaces/index.interface';
 
 @Injectable()
 export class ResourceService {
-
   databaseURL = AppSettings.DATABASEURL;
+  loading: boolean;
   selectedFreeslot: any;
   hospitals = [];
   payors = [];
@@ -38,6 +38,7 @@ export class ResourceService {
             this.departments = response.result;
           });
         }
+        this.loading = false;
       });
       
       this.getResource('languages')
@@ -45,20 +46,24 @@ export class ResourceService {
         let response = data as ResponseDataBase;
         this.languages = response.result;
         this.defaultLanguage = this.languages[0].id;
+        this.loading = false;
       });
    }
 
   getResourceWithParams(resource, params) {
+    this.loading = true;
     let url = this.databaseURL + 'rest/resource/' + resource;
     return this.http.get(url, { params: params })
   }
   
   getResource(id){
+    this.loading = true;
     let url = this.databaseURL + 'rest/resource/' + id;
     return this.http.get(url);
   }
 
   updateResource(typeResource: string, resource: any) {
+    this.loading = true;
     console.log(typeResource, resource);
   }
 

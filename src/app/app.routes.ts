@@ -9,7 +9,8 @@ import {
   MyappointmentsComponent,
   AccountinfoComponent,
   AdminComponent,
-  RegisterComponent
+  RegisterComponent,
+  ConfirmmailComponent
 } from "./components/index.components";
 
 // Routes configuration
@@ -29,6 +30,11 @@ const appRoutes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+
+  },
+  {
+    path: 'confirm',
+    component: ConfirmmailComponent,
 
   },
   { path: '**', redirectTo: 'bookappointments', pathMatch: 'full' },

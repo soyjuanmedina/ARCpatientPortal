@@ -1,3 +1,7 @@
+<div class="text-center" *ngIf="_resourceService.loading || _userService.loading">
+  <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
+</div>
+
 <div class="alert alert-danger" role="alert" *ngIf="_userService.danger || alertDanger">
   {{ _userService.danger }} {{ alertDanger }}
 </div>

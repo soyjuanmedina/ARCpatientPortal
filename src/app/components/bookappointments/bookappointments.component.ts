@@ -5,9 +5,10 @@ import { SystemJsNgModuleLoaderConfig } from '@angular/core/src/linker/system_js
 import * as moment from 'moment';
 declare var $: any; // TODO show modal in othe way
 
+// Date picker
 import { DatepickerOptions } from 'ng2-datepicker';
 
-// Translaate
+// Translate
 import { TranslateService } from 'ng2-translate';
 
 // Animations
@@ -62,14 +63,14 @@ export class BookappointmentsComponent implements AfterViewInit {
   };
 
   options: DatepickerOptions = {
-  minYear: 1970,
-  maxYear: 2030,
-  displayFormat: "DD-MM-YYYY",
-  barTitleFormat: 'MMMM YYYY',
-  dayNamesFormat: 'dd',
-  firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
-  minDate: new Date(new Date()), // Minimal selectable date
-};
+    minYear: moment(new Date()).year(),
+    maxYear: 2040,
+    displayFormat: "DD-MM-YYYY",
+    barTitleFormat: 'MMMM YYYY',
+    dayNamesFormat: 'dd',
+    firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
+    minDate: new Date(new Date()), // Minimal selectable date
+  };
 
   constructor(public router: Router,
     public _resourceService: ResourceService,
@@ -120,6 +121,7 @@ export class BookappointmentsComponent implements AfterViewInit {
     this._resourceService.getResourceWithParams('departments', params).subscribe(data => {
       let response = data as ResponseDataBase;
       this._resourceService.departments = response.result;
+      this._resourceService.loading = false;
     });
   }
 
@@ -130,6 +132,7 @@ export class BookappointmentsComponent implements AfterViewInit {
     this._resourceService.getResourceWithParams('doctors', params).subscribe(data => {
       let response = data as ResponseDataBase;
       this._resourceService.doctors = response.result;
+      this._resourceService.loading = false;
     });
   }
 

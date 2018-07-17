@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { TranslateService } from 'ng2-translate';
 
@@ -116,6 +115,7 @@ export class RegisterComponent {
         console.log(this.alertDanger);
         window.scrollTo(0, 0);
       }
+      this._userService.loading = false;
     });
 
   }

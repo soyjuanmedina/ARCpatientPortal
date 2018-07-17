@@ -1,32 +1,37 @@
-<h4>{{ 'CONFIGURATION_FOR_THE _SITE' | translate}}</h4>
-<hr>
-<form [formGroup]="configurationForma">
-  <div class="form-group row" *ngFor="let configurationsParam of configurationsParams">
-    <label [for]="configurationsParam.name" class="col-sm-1 col-form-label">{{configurationsParam.name}}</label>
-    <div class="col-sm-11">
-      <input class="form-control" 
-        [ngModel]="configurationsParam.value"
-        [name]="configurationsParam.name"
-        type="text" 
-        [formControlName]="configurationsParam.name">
-    </div>
-  </div>
+<div class="text-center" *ngIf="_resourceService.loading">
+  <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
+</div>
 
+
+<div class="text-center" *ngIf="!_resourceService.loading">
+  <h4>{{ 'CONFIGURATION_FOR_THE _SITE' | translate}}</h4>
+  <hr>
+  <form [formGroup]="configurationForma">
+    <div class="form-group row" *ngFor="let configurationsParam of configurationsParams">
+      <label [for]="configurationsParam.name" class="col-sm-1 col-form-label">{{configurationsParam.name}}</label>
+      <div class="col-sm-11">
+        <input class="form-control" [ngModel]="configurationsParam.value" [name]="configurationsParam.name" type="text" [formControlName]="configurationsParam.name">
+      </div>
+    </div>
   
-  <div class="row">
-    <div class="form-group col-md-6">
-      <button  data-toggle="modal" data-target="#SaveConfigurationModal" class="btn btn-main-color btn-block">
-        {{ 'SAVE ' | translate}}
-      </button>
+  
+    <div class="row">
+      <div class="form-group col-md-6">
+        <button data-toggle="modal" data-target="#SaveConfigurationModal" class="btn btn-main-color btn-block">
+          {{ 'SAVE ' | translate}}
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-secondary-color btn-block" (click)="reset()">
+          {{ 'RESET ' | translate}}
+        </button>
+      </div>
     </div>
-    <div class="col-md-6">
-      <button class="btn btn-secondary-color btn-block" (click)="reset()">
-        {{ 'RESET ' | translate}}
-      </button>
-    </div>
-    </div>
+  
+  </form>
+</div>
 
-</form>
+
 
 
 

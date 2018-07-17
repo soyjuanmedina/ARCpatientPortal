@@ -1,3 +1,7 @@
+<div class="text-center" *ngIf="_resourceService.loading || _userService.loading">
+  <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
+</div>
+
 <div class="container">
   <div class="row my-2">
     <div class="col-lg-8 order-lg-2">
@@ -104,10 +108,7 @@
                   <div class="col-md-6">
                     <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['confirmemail'].valid }" type="text" placeholder="Confirm email"
                       formControlName="confirmemail">
-                    <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('confirmemail').errors?.required" class="form-control-feedback invalid-feedback">
-                      {{ 'THE_EMAIL_IS_NOT_VALID. ' | translate}}.
-                    </div>
-                    <div *ngIf="formaMail.get('confirmemail').errors?.notEqualsMail && !formaMail.get('confirmemail').errors?.required && formaMail.get('confirmemail').errors?.pattern"
+                    <div *ngIf="formaMail.get('confirmemail').errors?.notEqualsMail  && !formaMail.get('email').errors?.pattern"
                       class="form-control-feedback invalid-feedback">
                       {{ 'THE_EMAILS_ARE_NOT_EQUAL ' | translate}}
                     </div>

@@ -1,28 +1,32 @@
 @import './variables';
 @import './mixins';
 
+// Date Picker
 .ngx-datepicker-container[_ngcontent-c3]{
-    z-index: 1;
-    
+    z-index: 1; 
 }
-.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-calendar-container[_ngcontent-c3] {
 
-  width: 240px !important;
+.datepicker-container .datepicker-input-container .datepicker-input{ width: 100px !important; }
 
+.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-calendar-container[_ngcontent-c3]{
+  margin-left: -125px; 
 }
 
 .is-today{
   color: white !important;
+  background: $secondary-color !important;
 }
 
-.is-today:hover{
-  color: white !important;
-  background: #a4a9b1 !important;
+.is-selected[_ngcontent-c3] {
+  background: $main-color !important;
 }
 
 .ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-input[_ngcontent-c3]{
     border: 0 !important;
+    width: auto !important;
 }
+
+// END Date Picker
 
 .main-container{
     margin-top: 20px;

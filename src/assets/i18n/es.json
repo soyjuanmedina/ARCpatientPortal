@@ -77,5 +77,7 @@
     "AT": "a las",
     "ADD_TO_CALENDAR": "Añadir al calendario",
     "PRINT": "Imprimir",
-    "PLEASE_CONFIRM_YOUR_MAIL": "Por favor, confirme el mail que le hemos enviado para confirmar su usuario antes de continuar con su petición de cita" 
+    "PLEASE_CONFIRM_YOUR_MAIL": "Por favor, confirme el mail que le hemos enviado para confirmar su usuario antes de continuar con su petición de cita",
+    "EMAIL_CONFIRMED": "Gracias, su email ha sido confirmado. Ahora ya puede loguearse.",
+    "SOMETHING_WENT_WRONG": "Lo sentimos, algo ha salido mal. Vuelva a intentarlo"
 }

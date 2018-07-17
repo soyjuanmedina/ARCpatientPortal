@@ -1,117 +1,118 @@
-<!-- <div class="alert alert-warning" role="alert" *ngIf="_userService.user && !_userService.user?.status">
-   {{ 'PLEASE_CONFIRM_YOUR_MAIL' | translate}}
-</div> -->
+<div class="text-center" *ngIf="_resourceService.loading || _userService.loading">
+  <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
+</div>
 
-<h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}}  {{_resourceService.hospitals[0].name}}</h4>
-<h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
-<hr>
-
-<form #forma="ngForm">
-  <div class="form-row">
-    <div class="col-md-6">
-      <div class="row" *ngIf="_resourceService.hospitals?.length > 1">
-        <div class="form-group col-md-12">
-          <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
-          <div class="input-group mb-3">
-            <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId
-             (ngModelChange)="getDepartments($event)">
-              <option *ngFor="let hospital of _resourceService.hospitals" [value]="hospital.id">{{ hospital.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="input-group-text" 
-                      (click)="searchterms.hospitalId = null; _resourceService.departments = []" 
-                      [disabled] = "!searchterms.hospitalId">
-                <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="row">
-        <div class="form-group col-md-12">
-          <label>{{ 'DEPARTMENT ' | translate}}</label>
-          <div class="input-group mb-3">
-            <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId
-              [disabled]="!_resourceService.departments.length"
-              (ngModelChange)="getConsultants($event)">
-              <option *ngFor="let department of _resourceService.departments" [value]="department.id">{{ department.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" (click)="searchterms.departmentId = null" [disabled] = "!searchterms.departmentId">
-                <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="col-md-6">
-
-      <div class="row">
-        <div class="form-group col-md-12">
-          <label>{{ 'CONSULTANT ' | translate}}</label>
-          <div class="input-group mb-3">
-            <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!_resourceService.doctors.length">
-              <option *ngFor="let doctor of _resourceService.doctors" [value]="doctor.id">{{ doctor.name }}</option>
-            </select>
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary" (click)="searchterms.doctorId = null" [disabled] = "!searchterms.doctorId">
-                <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
- 
-
-
-
-
-
- 
-
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group row float-right">
-            <label class="col-3 col-form-label">
-              {{ 'DATE ' | translate}}
-            </label>
-            <div class="col-9 input-group">
-              <ng-datepicker class="form-control" [(ngModel)]="searchterms.date" 
-                  name="date" [options]="options"></ng-datepicker>
+<div *ngIf="!_resourceService.loading && !_userService.loading">
+  <h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}} {{_resourceService.hospitals[0].name}}</h4>
+  <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
+  <hr>
+  
+  <form #forma="ngForm">
+    <div class="form-row">
+      <div class="col-md-6">
+        <div class="row" *ngIf="_resourceService.hospitals?.length > 1">
+          <div class="form-group col-md-12">
+            <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
+            <div class="input-group mb-3">
+              <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId (ngModelChange)="getDepartments($event)">
+                <option *ngFor="let hospital of _resourceService.hospitals" [value]="hospital.id">{{ hospital.name }}</option>
+              </select>
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" (click)="searchterms.date = tomorrow" [disabled] = "searchterms.date == tomorrow">
-                  <i class="fas fa-calendar-check" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
+                <button class="input-group-text" (click)="searchterms.hospitalId = null; _resourceService.departments = []" [disabled]="!searchterms.hospitalId">
+                  <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
                 </button>
               </div>
             </div>
           </div>
         </div>
+  
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label>{{ 'DEPARTMENT ' | translate}}</label>
+            <div class="input-group mb-3">
+              <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!_resourceService.departments.length"
+                (ngModelChange)="getConsultants($event)">
+                <option *ngFor="let department of _resourceService.departments" [value]="department.id">{{ department.name }}</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="searchterms.departmentId = null" [disabled]="!searchterms.departmentId">
+                  <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
       </div>
-          
+      <div class="col-md-6">
+  
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label>{{ 'CONSULTANT ' | translate}}</label>
+            <div class="input-group mb-3">
+              <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!_resourceService.doctors.length">
+                <option *ngFor="let doctor of _resourceService.doctors" [value]="doctor.id">{{ doctor.name }}</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="searchterms.doctorId = null" [disabled]="!searchterms.doctorId">
+                  <i class="fas fa-trash-alt" style="width: 1.2rem; height: 1rem; cursor: pointer;"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group row float-right">
+              <label class="col-3 col-form-label">
+                {{ 'DATE ' | translate}}
+              </label>
+              <div class="col-9 input-group">
+                <ng-datepicker class="form-control" [(ngModel)]="searchterms.date" name="date" [options]="options"></ng-datepicker>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+      </div>
+    </div>
+  
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-main-color btn-block" (click)="searchFreeSlots()">
+          {{ 'SEARCH ' | translate}}
+        </button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-secondary-color btn-block" (click)="reset()">
+          {{ 'RESET ' | translate}}
+        </button>
+      </div>
+    </div>
+  </form>
+
+</div>
 
 
-      
-    </div>
-  </div>
 
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <button type="submit" class="btn btn-main-color btn-block" (click)="searchFreeSlots()">
-        {{ 'SEARCH ' | translate}}
-      </button>
-    </div>
-    <div class="col-md-6">
-      <button class="btn btn-secondary-color btn-block"  (click)="reset()">
-        {{ 'RESET ' | translate}}
-      </button>
-    </div>
-  </div>
-</form>
+
 <div class="alert alert-warning" role="alert" *ngIf="_userService.warning">
   {{_userService.warning}}
 </div>
