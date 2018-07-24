@@ -21,15 +21,23 @@
         </h5>
         <div class="row">
           <div class="col-12">
+            <div class="alert alert-success" role="alert" *ngIf="alertOk">
+               {{ alertOk | translate}}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="alertError">
+               {{ alertError | translate}}
+            </div>
             <form>
               <fieldset class="form-group">
-                <input type="email" class="form-control" id="contactFormMail" placeholder="{{ 'ENTER_EMAIL ' | translate}}">
+                <input type="email" class="form-control" id="contactFormMail" placeholder="{{ 'ENTER_EMAIL ' | translate}}"
+                   name="Contact Mail" [(ngModel)]=contactForm.contactFormMail>
               </fieldset>
               <fieldset class="form-group">
-                <textarea class="form-control" id="contactFormMessage" placeholder="{{ 'MESSAGE ' | translate}}"></textarea>
+                <textarea class="form-control" id="contactFormMessage" placeholder="{{ 'MESSAGE ' | translate}}"
+                   name="Contact Messafe" [(ngModel)]=contactForm.contactFormMessage></textarea>
               </fieldset>
               <fieldset class="form-group text-xs-right">
-                <button type="button" class="btn background-secondary-color pull-right">{{ 'SEND ' | translate}}</button>
+                <button type="button" class="btn background-secondary-color pull-right" (click)="sendMail();">{{ 'SEND ' | translate}}</button>
               </fieldset>
             </form>
           </div>

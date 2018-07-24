@@ -79,5 +79,7 @@
     "PRINT": "Imprimir",
     "PLEASE_CONFIRM_YOUR_MAIL": "Por favor, confirme el mail que le hemos enviado para confirmar su usuario antes de continuar con su petición de cita",
     "EMAIL_CONFIRMED": "Gracias, su email ha sido confirmado. Ahora ya puede loguearse.",
-    "SOMETHING_WENT_WRONG": "Lo sentimos, algo ha salido mal. Vuelva a intentarlo"
+    "SOMETHING_WENT_WRONG": "Lo sentimos, algo ha salido mal. Vuelva a intentarlo",
+    "THANKS_FOR_CONTACTING": "Gracias por contactarnos. Nos pondremos en contacto con usted en breve",
+    "PLEASE_REVIEW_YOUR_EMAIL": "Por favor revisa tu dirección de mail. No parece válida"
 }

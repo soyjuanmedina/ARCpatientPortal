@@ -67,4 +67,9 @@ export class ResourceService {
     console.log(typeResource, resource);
   }
 
+  sendMail (content) {
+    let url = this.databaseURL + 'rest/resource/sendmail';
+    return this.http.put(url, content);
+  }
+
 }

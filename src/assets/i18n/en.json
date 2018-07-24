@@ -79,5 +79,7 @@
     "PRINT": "Print",
     "PLEASE_CONFIRM_YOUR_MAIL": "Please confirm the email we have sent you to confirm your user before continuing with your appointment request",
     "EMAIL_CONFIRMED": "Thank you. Your email has been confirmed succesfully. Now you can login",
-    "SOMETHING_WENT_WRONG": "Sorry, something went wrong. Please try again later."
+    "SOMETHING_WENT_WRONG": "Sorry, something went wrong. Please try again later.",
+    "THANKS_FOR_CONTACTING": "Thanks for contacting us. We will get in touch with you shortly",
+    "PLEASE_REVIEW_YOUR_EMAIL": "Please review your email address. Looks like no valid"
 }
