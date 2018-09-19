@@ -28,8 +28,9 @@ export class AdminComponent implements OnInit {
 
   searchConfigurationsParams() {
     this.configurationsParams = [];
-    this._resourceService.getResource('configuration')
+    this._resourceService.getResource('doctors')
       .subscribe(data => {
+        console.log(data);
         for (var x in data) {
           if (data[x] != null) {
             this.configurationsParams.push(data[x]);

@@ -23,7 +23,7 @@
     <div class="col-md-6">
       <div class="form-group row">
         <label class="col-3 col-form-label">
-          {{ 'NAME ' | translate}}
+          {{ 'NAME' | translate}}
         </label>
         <div class="col-9">
           <input class="form-control" 
@@ -31,10 +31,10 @@
                   [ngModel]="user.name"
                   name="name" 
                   type="text" 
-                  placeholder="{{ 'NAME ' | translate}}" 
+                  placeholder="{{ 'NAME' | translate}}" 
                   formControlName="name">
           <div *ngIf="forma.get('name').errors?.required" class="form-control-feedback invalid-feedback">
-            {{ 'THE_NAME_IS_REQUIRED ' | translate}}
+            {{ 'THE_NAME_IS_REQUIRED' | translate}}
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <div class="col-md-6">
       <div class="form-group row">
         <label class="col-3 col-form-label">
-          {{ 'LASTNAME ' | translate}}
+          {{ 'LASTNAME' | translate}}
         </label>
         <div class="col-9">
           <input class="form-control" 
@@ -51,10 +51,10 @@
                   [ngModel]="user.lastname" 
                   name="lastname"
                   type="text" 
-                  placeholder="{{ 'LASTNAME ' | translate}}"
+                  placeholder="{{ 'LASTNAME' | translate}}"
                   formControlName="lastname">
           <div *ngIf="forma.get('lastname').errors?.required" class="form-control-feedback invalid-feedback">
-            {{ 'THE_LASTNAME_IS_REQUIRED ' | translate}}
+            {{ 'THE_LASTNAME_IS_REQUIRED' | translate}}
           </div>
         </div>
       </div>
@@ -67,18 +67,18 @@
     <div class="col-md-6">
       <div class="form-group row">
         <label class="col-3 col-form-label">
-          {{ 'EMAIL ' | translate}}
+          {{ 'EMAIL' | translate}}
         </label>
         <div class="col-9">
           <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['email'].valid }" 
                 [ngModel]="user.email" name="email"
-                type="text" placeholder="{{ 'EMAIL ' | translate}}"
+                type="text" placeholder="{{ 'EMAIL' | translate}}"
             formControlName="email">
           <div *ngIf="forma.get('email').errors?.required" class="form-control-feedback invalid-feedback">
-            {{ 'THE_EMAIL_MANDATORY ' | translate}}
+            {{ 'THE_EMAIL_MANDATORY' | translate}}
           </div>
           <div *ngIf="forma.get('email').errors?.pattern && !forma.get('email').errors?.required" class="form-control-feedback invalid-feedback">
-            {{ 'THE_EMAIL_IS_NOT_VALID. ' | translate}}
+            {{ 'THE_EMAIL_IS_NOT_VALID.' | translate}}
           </div>
         </div>
       </div>
@@ -87,12 +87,12 @@
     <div class="col-md-6">
       <div class="form-group row">
         <label class="col-3 col-form-label">
-          {{ 'PHONE_NUMBER ' | translate}}
+          {{ 'PHONE_NUMBER' | translate}}
         </label>
         <div class="col-9">
           <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['phoneNumber'].valid }" 
                 [ngModel]="user.phoneNumber" name="phoneNumber"
-                type="number" placeholder="{{ 'PHONE_NUMBER ' | translate}}"
+                type="number" placeholder="{{ 'PHONE_NUMBER' | translate}}"
                 formControlName="phoneNumber">
         </div>
       </div>
@@ -105,7 +105,7 @@
       <div class="col-md-6">
         <div class="form-group row">
           <label class="col-3 col-form-label">
-            {{ 'LANGUAGE ' | translate}}
+            {{ 'LANGUAGE' | translate}}
           </label>
           <div class="col-9">
             <select class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['language'].valid }"
@@ -113,7 +113,7 @@
                     placeholder="Select language"
                     formControlName="language">
               <option value="">
-                {{ 'SELECT_YOUR_LANGUAGE ' | translate}}
+                {{ 'SELECT_YOUR_LANGUAGE' | translate}}
               </option>
               <option *ngFor="let language of _resourceService.languages" [value]="language.id">{{ language.name }}</option>
             </select>
@@ -152,13 +152,13 @@
     <div class="col-md-6">
       <div class="form-group row">
         <label class="col-3 col-form-label">
-          {{ 'RETYPE_PASSWORD ' | translate}}
+          {{ 'RETYPE_PASSWORD' | translate}}
         </label>
         <div class="col-9">
           <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
             formControlName="confirmpassword">
           <div *ngIf="forma.get('confirmpassword').errors?.notequalspass && !forma.get('confirmpassword').pristine" class="form-control-feedback invalid-feedback">
-            {{ 'THE_PASSWORDS_ARE_NOT_EQUAL ' | translate}}
+            {{ 'THE_PASSWORDS_ARE_NOT_EQUAL' | translate}}
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@
     </div>
     <div class="col-md-6">
       <button type="reset" class="btn btn-secondary-color btn-block">
-         {{ 'RESET ' | translate}}
+         {{ 'RESET' | translate}}
       </button>
     </div>
   </div>

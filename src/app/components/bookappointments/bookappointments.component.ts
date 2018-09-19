@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SystemJsNgModuleLoaderConfig } from '@angular/core/src/linker/system_js_ng_module_factory_loader';
 import * as moment from 'moment';
 declare var $: any; // TODO show modal in othe way
+import { AppSettings } from '../../appSettings';
 
 // Date picker
 import { DatepickerOptions } from 'ng2-datepicker';
@@ -51,9 +52,11 @@ import { SearchtermsInterface, ResponseDataBase } from '../../interfaces/index.i
 })
 export class BookappointmentsComponent implements AfterViewInit {
 
+  NAME = AppSettings.NAME;
   patient;
   freeslots = [];
   tomorrow = moment(new Date()).add(1, 'days');
+  loading: string = 'LOADING';
 
   searchterms: SearchtermsInterface = {
     hospitalId: null,
@@ -115,6 +118,7 @@ export class BookappointmentsComponent implements AfterViewInit {
   }
 
   getDepartments(hospitalId) {
+    this._resourceService.loading = true;
     let params = {
       hospitalId: hospitalId,
     };
@@ -126,6 +130,7 @@ export class BookappointmentsComponent implements AfterViewInit {
   }
 
   getConsultants(departmentlId) {
+    this._resourceService.loading = true;
     let params = {
       departmentId: departmentlId,
     };

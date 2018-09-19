@@ -36,14 +36,21 @@ export class AccountinfoComponent implements OnInit {
 
     this.formaMail = new FormGroup({
       "email": new FormControl("", [
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")
+        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"),
+        Validators.required
       ]),
-      "confirmemail": new FormControl("", []),
+      "confirmemail": new FormControl("", [
+        Validators.required
+      ]),
     });
 
     this.formaPass = new FormGroup({
-      "password": new FormControl(),
-      "confirmpassword": new FormControl(),
+      "password": new FormControl("", [
+        Validators.required
+      ]),
+      "confirmpassword": new FormControl("", [
+        Validators.required
+      ]),
     });
 
     this.formaPass.controls["confirmpassword"].setValidators([
@@ -122,6 +129,11 @@ export class AccountinfoComponent implements OnInit {
       }
       this._userService.loading = false;
     });
+  }
+
+  ver() {
+    console.log(this.formaMail);
+    console.log(this.formaMail.controls['confirmemail'].dirty)
   }
   
 

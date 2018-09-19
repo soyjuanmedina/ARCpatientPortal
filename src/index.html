@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Patient Portal from ARC</title>
+
+  <link rel="manifest" href="assets/manifest.json">
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -19,6 +21,14 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
+
+    <script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register('/assets/sw.js', { scope: '/' })
+           .then(function() { console.log("Service Worker Registered"); });
+}
+</script>
 
 </body>
 </html>

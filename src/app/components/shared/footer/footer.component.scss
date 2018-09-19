@@ -20,16 +20,6 @@ body {
   width: 100%;
 }
 
-/* Taller footer on small screens */
-@media (max-width: 34em) {
-    body {
-      margin-bottom: 500px;
-    }
-    .footer {
-      height: 500px;
-    }
-}
-
 /* Sticky footer style and color
 -------------------------------------------------- */
 footer {

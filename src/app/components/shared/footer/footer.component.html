@@ -17,10 +17,13 @@
 
       <div class="col-md-6">
         <h5>
-           {{ 'CONTACT_US ' | translate}}
+           {{ 'CONTACT_US' | translate}}
         </h5>
         <div class="row">
           <div class="col-12">
+            <div class="text-center alert background-secondary-color" *ngIf="loading">
+               <i class="fa fa-refresh fa-spin main-color" style="font-size:20px"></i><span class="main-color"> {{ sending | translate}}...</span>
+            </div>
             <div class="alert alert-success" role="alert" *ngIf="alertOk">
                {{ alertOk | translate}}
             </div>
@@ -29,20 +32,28 @@
             </div>
             <form>
               <fieldset class="form-group">
-                <input type="email" class="form-control" id="contactFormMail" placeholder="{{ 'ENTER_EMAIL ' | translate}}"
+                <input type="email" class="form-control" id="contactFormMail" placeholder="{{ 'ENTER_EMAIL' | translate}}"
                    name="Contact Mail" [(ngModel)]=contactForm.contactFormMail>
               </fieldset>
               <fieldset class="form-group">
-                <textarea class="form-control" id="contactFormMessage" placeholder="{{ 'MESSAGE ' | translate}}"
+                <textarea class="form-control" id="contactFormMessage" placeholder="{{ 'MESSAGE' | translate}}"
                    name="Contact Messafe" [(ngModel)]=contactForm.contactFormMessage></textarea>
               </fieldset>
               <fieldset class="form-group text-xs-right">
-                <button type="button" class="btn background-secondary-color pull-right" (click)="sendMail();">{{ 'SEND ' | translate}}</button>
+                <button type="button" class="btn background-secondary-color pull-right" (click)="sendMail();">{{ 'SEND' | translate}}</button>
               </fieldset>
             </form>
           </div>
         </div>
         <br>
+        <div *ngIf="_resourceService.isMobile">
+            <h5>
+            Or directly you can phone us
+            </h5>
+          <p>
+            <a type="button" class="btn background-secondary-color" [href]=stringPhone>Click to call</a>
+          </p>
+        </div>
       </div>
     </div>
   </div>

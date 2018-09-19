@@ -1,18 +1,18 @@
-<div class="text-center" *ngIf="_resourceService.loading || _userService.loading">
-  <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
-</div>
-
-<div *ngIf="!_resourceService.loading && !_userService.loading">
-  <h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR ' | translate}} {{_resourceService.hospitals[0].name}}</h4>
-  <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS ' | translate}}</h4>
+<div>
+  <h4 *ngIf="_resourceService.hospitals?.length == 1">{{ 'BOOK_APPOINTMENTS_FOR' | translate}} {{ NAME }}</h4>
+  <h4 *ngIf="_resourceService.hospitals?.length > 1">{{ 'BOOK_APPOINTMENTS' | translate}}</h4>
   <hr>
   
   <form #forma="ngForm">
+    <div class="text-center alert background-main-color"  *ngIf="_resourceService.loading || _userService.loading">
+      <i class="fa fa-refresh fa-spin secondary-color" style="font-size:20px"></i>
+      <span class="secondary-color"> {{ loading | translate}}...</span>
+    </div>
     <div class="form-row">
       <div class="col-md-6">
         <div class="row" *ngIf="_resourceService.hospitals?.length > 1">
           <div class="form-group col-md-12">
-            <label>{{ 'CHOOSE_YOUR_HOSPITAL ' | translate}}</label>
+            <label>{{ 'CHOOSE_YOUR_HOSPITAL' | translate}}</label>
             <div class="input-group mb-3">
               <select name="hospital" class="form-control" [(ngModel)]=searchterms.hospitalId (ngModelChange)="getDepartments($event)">
                 <option *ngFor="let hospital of _resourceService.hospitals" [value]="hospital.id">{{ hospital.name }}</option>
@@ -28,7 +28,7 @@
   
         <div class="row">
           <div class="form-group col-md-12">
-            <label>{{ 'DEPARTMENT ' | translate}}</label>
+            <label>{{ 'DEPARTMENT' | translate}}</label>
             <div class="input-group mb-3">
               <select name="department" class="form-control" [(ngModel)]=searchterms.departmentId [disabled]="!_resourceService.departments.length"
                 (ngModelChange)="getConsultants($event)">
@@ -48,7 +48,7 @@
   
         <div class="row">
           <div class="form-group col-md-12">
-            <label>{{ 'CONSULTANT ' | translate}}</label>
+            <label>{{ 'CONSULTANT' | translate}}</label>
             <div class="input-group mb-3">
               <select name="consultant" class="form-control" [(ngModel)]=searchterms.doctorId [disabled]="!_resourceService.doctors.length">
                 <option *ngFor="let doctor of _resourceService.doctors" [value]="doctor.id">{{ doctor.name }}</option>
@@ -75,7 +75,7 @@
           <div class="col-md-12">
             <div class="form-group row float-right">
               <label class="col-3 col-form-label">
-                {{ 'DATE ' | translate}}
+                {{ 'DATE' | translate}}
               </label>
               <div class="col-9 input-group">
                 <ng-datepicker class="form-control" [(ngModel)]="searchterms.date" name="date" [options]="options"></ng-datepicker>
@@ -97,12 +97,12 @@
     <div class="form-row">
       <div class="form-group col-md-6">
         <button type="submit" class="btn btn-main-color btn-block" (click)="searchFreeSlots()">
-          {{ 'SEARCH ' | translate}}
+          {{ 'SEARCH' | translate}}
         </button>
       </div>
       <div class="col-md-6">
         <button class="btn btn-secondary-color btn-block" (click)="reset()">
-          {{ 'RESET ' | translate}}
+          {{ 'RESET' | translate}}
         </button>
       </div>
     </div>
@@ -118,18 +118,18 @@
 </div>
 
 <div *ngIf="freeslots.length">
-  <h4>{{ 'SELECT_YOUR_APPOINTMENT ' | translate}}</h4>
+  <h4>{{ 'SELECT_YOUR_APPOINTMENT' | translate}}</h4>
   <div id="container" [@listAnimation]="freeslots.length">
   <div  *ngFor="let freeslot of freeslots; let i = index"  [@listAnimation]="state">
     <div class="card sm-12">
-      <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{freeslot.doctorName}}</div>
+      <div class="card-header btn-main-color">{{ 'CONSULTANT' | translate}}: {{freeslot.doctorName}}</div>
       <div class="card-body">
-        <h5 class="card-title">{{ 'DEPARTMENT ' | translate}}: {{freeslot.department}}</h5>
-        <p class="card-text">{{ 'DATE ' | translate}}: {{freeslot.date}} | {{ 'HOUR ' | translate}}: {{freeslot.hour}}</p>
-        <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
+        <h5 class="card-title">{{ 'DEPARTMENT' | translate}}: {{freeslot.department}}</h5>
+        <p class="card-text">{{ 'DATE' | translate}}: {{freeslot.date}} | {{ 'HOUR' | translate}}: {{freeslot.hour}}</p>
+        <small class="text-muted">{{ 'OPTIONS' | translate}}</small>
         <br />
         <button type="button"   data-toggle="modal" data-target="#FreeSlotModal" class="btn background-main-color" (click)="sendFreeslot(freeslot)"> 
-          {{ 'BOOK ' | translate}}
+          {{ 'BOOK' | translate}}
         </button>
         <button type="button" class="btn background-secondary-color" (click)="discardFreeslot(i)"> 
           {{ 'DISCARD' | translate}}
@@ -151,7 +151,7 @@
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">{{ 'YOUR_SELECTION ' | translate}}</h4>
+        <h4 class="modal-title">{{ 'YOUR_SELECTION' | translate}}</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
@@ -159,7 +159,7 @@
       <div class="modal-body">
         <div class="card">
           <div class="card-header">
-            {{ 'DATE ' | translate}}: {{_resourceService.selectedFreeslot?.date}} | Hour: {{_resourceService.selectedFreeslot?.hour}}
+            {{ 'DATE' | translate}}: {{_resourceService.selectedFreeslot?.date}} | Hour: {{_resourceService.selectedFreeslot?.hour}}
           </div>
           <div class="card-body">
             <h5 class="card-title">{{_resourceService.selectedFreeslot?.doctorName}}</h5>
@@ -185,7 +185,7 @@
             <div class="row" *ngIf="_userService.user">
               <div class="form-group col-md-6">
                 <button type="submit" class="btn btn-main-color btn-block" data-dismiss="modal" (click)="bookSlot(_resourceService.selectedFreeslot)">
-                  {{ 'BOOK ' | translate}}
+                  {{ 'BOOK' | translate}}
                 </button>
               </div>
               <div class="col-md-6">

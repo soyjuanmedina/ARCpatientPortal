@@ -29,6 +29,9 @@ import { UserService,
   AuthService,
   ResourceService } from "./services/index.service";
 
+//Guards
+import { AuthGuardService } from './services/auth-guard.service';
+
 // Components
 import { AppComponent,
   NavbarComponent,
@@ -74,6 +77,7 @@ import { AppComponent,
     UserService,
     AuthService,
     ResourceService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AllHttpRequestsInterceptor,

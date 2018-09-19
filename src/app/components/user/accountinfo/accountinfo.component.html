@@ -8,12 +8,12 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">
-            {{ 'PROFILE ' | translate}}
+            {{ 'PROFILE' | translate}}
           </a>
         </li>
         <li class="nav-item">
           <a href="" data-target="#settings" data-toggle="tab" class="nav-link">
-            {{ 'SETTINGS ' | translate}}
+            {{ 'SETTINGS' | translate}}
           </a>
         </li>
       </ul>
@@ -22,14 +22,14 @@
         <!--Tab profile-->
         <div class="tab-pane active" id="profile">
           <div class="alert alert-success col-sm-12">
-              {{ 'IF_THERE_IS_ANY_DISCREPANCIES' | translate}}.
+            {{ 'IF_THERE_IS_ANY_DISCREPANCIES' | translate}}.
           </div>
           <div class="container">
             <div class="row">
               <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'NAME ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'NAME' | translate}}:</span>
                   </div>
                   <input type="text" class="form-control" value="{{_userService.user.name}}" disabled>
                 </div>
@@ -37,7 +37,7 @@
               <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'LASTNAME ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'LASTNAME' | translate}}:</span>
                   </div>
                   <input type="text" class="form-control" value="{{_userService.user.lastname}}" disabled>
                 </div>
@@ -47,7 +47,7 @@
               <div class="col">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'PHONE_NUMBER ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'PHONE_NUMBER' | translate}}:</span>
                   </div>
                   <input type="text" class="form-control" value="{{_userService.user.phoneNumber}}" disabled>
                 </div>
@@ -58,7 +58,7 @@
               <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'EMAIL ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'EMAIL' | translate}}:</span>
                   </div>
                   <input type="text" class="form-control" value="{{_userService.user.email}}" disabled>
                 </div>
@@ -66,36 +66,37 @@
               <div class="col-md-6">
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text">{{ 'LANGUAGE ' | translate}}:</span>
+                    <span class="input-group-text">{{ 'LANGUAGE' | translate}}:</span>
                   </div>
                   <input type="text" class="form-control" value="{{languageName}}" disabled>
                 </div>
               </div>
             </div>
-          
+
           </div>
         </div>
 
         <!--Tab Settings-->
         <div class="tab-pane" id="settings">
-          <div class="alert alert-info" role="alert" *ngIf = "alert">
+          <div class="alert alert-info" role="alert" *ngIf="alert">
             {{alert}}
           </div>
           <form [formGroup]="formaMail" (ngSubmit)="changeMail()">
-            <h4> 
+            <h4>
               {{ 'CHANGE_YOUR_EMAIL' | translate}}
             </h4>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
-                    {{ 'EMAIL ' | translate}}
+                    {{ 'EMAIL' | translate}}
                   </label>
                   <div class="col-md-6">
-                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['email'].valid }" type="text" placeholder="Email"
-                      formControlName="email">
-                    <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('email').errors?.required" class="form-control-feedback invalid-feedback">
-                      {{ 'THE_EMAIL_IS_NOT_VALID. ' | translate}}.
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['email'].valid && formaMail.controls['email'].value}"
+                      type="text" placeholder="Email" formControlName="email">
+                    <div *ngIf="formaMail.get('email').errors?.pattern && !formaMail.get('email').errors?.required"
+                      class="form-control-feedback invalid-feedback">
+                      {{ 'THE_EMAIL_IS_NOT_VALID.' | translate}}.
                     </div>
                   </div>
                 </div>
@@ -103,14 +104,14 @@
               <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
-                      {{ 'RETYPE_EMAIL ' | translate}}
+                    {{ 'RETYPE_EMAIL' | translate}}
                   </label>
                   <div class="col-md-6">
-                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['confirmemail'].valid }" type="text" placeholder="Confirm email"
-                      formControlName="confirmemail">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaMail.controls['confirmemail'].valid }"
+                      type="text" placeholder="Confirm email" formControlName="confirmemail">
                     <div *ngIf="formaMail.get('confirmemail').errors?.notEqualsMail  && !formaMail.get('email').errors?.pattern"
                       class="form-control-feedback invalid-feedback">
-                      {{ 'THE_EMAILS_ARE_NOT_EQUAL ' | translate}}
+                      {{ 'THE_EMAILS_ARE_NOT_EQUAL' | translate}}
                     </div>
                   </div>
                 </div>
@@ -118,13 +119,13 @@
             </div>
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="!formaMail.valid">
-                    {{ 'CHANGE_MAIL ' | translate}}
+                <button type="submit" class="btn background-main-color btn-block" [disabled]="!formaMail.valid">
+                  {{ 'CHANGE_MAIL' | translate}}
                 </button>
               </div>
               <div class="col-md-6">
-                <button type="reset" class="btn btn-secondary btn-block">
-                  {{ 'RESET ' | translate}}
+                <button type="reset" class="btn background-secondary-color btn-block" (click)="ver()">
+                  {{ 'RESET' | translate}}
                 </button>
               </div>
             </div>
@@ -133,7 +134,7 @@
           <hr>
 
           <form [formGroup]="formaPass" (ngSubmit)="changePass()">
-            <h4> {{ 'CHANGE_PASSWORD ' | translate}}</h4>
+            <h4> {{ 'CHANGE_PASSWORD' | translate}}</h4>
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group row">
@@ -141,9 +142,8 @@
                     {{ 'PASSWORD' | translate}}
                   </label>
                   <div class="col-md-6">
-                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid }" 
-                    type="password" placeholder="Password"
-                    formControlName="password">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['password'].valid && formaPass.controls['password'].value}"
+                      type="password" placeholder="Password" formControlName="password">
                   </div>
                 </div>
               </div>
@@ -151,13 +151,13 @@
               <div class="col-md-6">
                 <div class="form-group row">
                   <label class="col-3 col-form-label">
-                      {{ 'RETYPE_PASSWORD ' | translate}}
+                    {{ 'RETYPE_PASSWORD' | translate}}
                   </label>
                   <div class="col-md-6">
-                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['confirmpassword'].valid }" type="password" placeholder="Confirm password"
-                      formControlName="confirmpassword">
+                    <input class="form-control" [ngClass]="{ 'is-invalid': !formaPass.controls['confirmpassword'].valid }"
+                      type="password" placeholder="Confirm password" formControlName="confirmpassword">
                     <div class="form-control-feedback invalid-feedback">
-                      {{ 'THE_PASSWORDS_ARE_NOT_EQUAL ' | translate}}
+                      {{ 'THE_PASSWORDS_ARE_NOT_EQUAL' | translate}}
                     </div>
                   </div>
                 </div>
@@ -165,14 +165,13 @@
             </div>
             <div class="form-group row">
               <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-primary btn-block" 
-                        [disabled]="!formaPass.controls['password'].value ||!formaPass.controls['confirmpassword'].value || !formaPass.valid">
-                    {{ 'CHANGE_PASSWORD ' | translate}}
+                <button type="submit" class="btn background-main-color btn-block" [disabled]="!formaPass.controls['password'].value ||!formaPass.controls['confirmpassword'].value || !formaPass.valid">
+                  {{ 'CHANGE_PASSWORD' | translate}}
                 </button>
               </div>
               <div class="col-md-6">
-                <button type="reset" class="btn btn-secondary btn-block">
-                  {{ 'RESET ' | translate}}
+                <button class="btn background-secondary-color btn-block">
+                  {{ 'RESET' | translate}}
                 </button>
               </div>
             </div>
@@ -187,9 +186,8 @@
     <div class="col-lg-4 order-lg-1 text-center">
       <img src="assets/img/user-profile.png" class="mx-auto img-fluid img-circle d-block" alt="avatar">
       <h6 class="mt-2">{{_userService.user.name}} {{_userService.user.lastname}}</h6>
-      <button type="button" class="btn btn-circle btn-danger btn-sm" 
-        data-toggle="modal" data-target="#deleteAccountModal">
-        {{ 'DELETE_ACCOUNT ' | translate}}
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteAccountModal">
+        {{ 'DELETE_ACCOUNT' | translate}}
       </button>
     </div>
   </div>
@@ -203,29 +201,30 @@
     <div class="modal-content">
 
       <!-- Modal Header -->
-      <div class="modal-body"><div class="modal-header">
-        <h4 class="modal-title">{{ 'ARE_YOU_SURE ' | translate}}</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
       <div class="modal-body">
-      <p>
-          {{ 'DO_YOU_WANT_DELETE_ACCOUNT ' | translate}}
-      </p>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAccount()" data-dismiss="modal">
-                {{ 'YES ' | translate}}
-            </button>
-          </div>
-          <div class="col-md-6">
-            <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
-                {{ 'NO ' | translate}}
-            </button>
+        <div class="modal-header">
+          <h4 class="modal-title">{{ 'ARE_YOU_SURE' | translate}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>
+            {{ 'DO_YOU_WANT_DELETE_ACCOUNT' | translate}}
+          </p>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAccount()" data-dismiss="modal">
+                {{ 'YES' | translate}}
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
+                {{ 'NO' | translate}}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
       </div>
     </div>

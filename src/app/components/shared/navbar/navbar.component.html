@@ -21,7 +21,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['admin']" *ngIf="_userService.user?.role == '2'">{{ 'CONFIGURATION' | translate}} </a>
+        <a class="nav-link" [routerLink]="['admin']" *ngIf="_userService.user?.role == 'admin'">{{ 'CONFIGURATION' | translate}} </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['myappointments']" *ngIf="_userService.user">{{ 'MY_APPOINTMENTS' | translate}}        </a>
@@ -30,7 +30,7 @@
         <a class="nav-link" [routerLink]="['bookappointments']">{{ 'BOOKAPPOINTMENTS' | translate }}</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" [routerLink]="['accountinfo']" *ngIf="_userService.user">{{ 'ACCOUNT INFO' | translate}}        </a>
+        <a class="nav-link" [routerLink]="['accountinfo']" *ngIf="_userService.user">{{ 'ACCOUNT_INFO' | translate}}        </a>
       </li>
     </ul>
     <ul class="navbar-nav float-right">
@@ -63,6 +63,10 @@
           {{_authService.alert}}
         </div>
         <form>
+          <div class="text-center alert background-main-color" *ngIf="_authService.loading">
+            <i class="fa fa-refresh fa-spin secondary-color" style="font-size:20px"></i>
+            <span class="secondary-color"> {{ loging | translate}}...</span>
+          </div>
           <div class="form-group row">
             <div class="form-group col-md-6">
               <label>{{ 'USERNAME / EMAIL' | translate}}              </label>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from 'ng2-translate';
 import 'rxjs/add/operator/map';
 
 // App Settings
@@ -22,8 +23,12 @@ export class ResourceService {
   schedules = [];
   configurationsParams = [];
   defaultLanguage;
+  isMobile: boolean = false;
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient,
+    public translate: TranslateService) {
+
+    this.loading = true;
 
     this.getResource('hospitals')
       .subscribe(data => {
@@ -46,30 +51,39 @@ export class ResourceService {
         let response = data as ResponseDataBase;
         this.languages = response.result;
         this.defaultLanguage = this.languages[0].id;
+        this.translate.use(this.defaultLanguage);
         this.loading = false;
       });
+
+    if (navigator.userAgent.match(/Android/i)
+      || navigator.userAgent.match(/webOS/i)
+      || navigator.userAgent.match(/iPhone/i)
+      || navigator.userAgent.match(/iPad/i)
+      || navigator.userAgent.match(/iPod/i)
+      || navigator.userAgent.match(/BlackBerry/i)
+      || navigator.userAgent.match(/Windows Phone/i)
+    ) {
+        this.isMobile = true;
+    }
    }
 
   getResourceWithParams(resource, params) {
-    this.loading = true;
     let url = this.databaseURL + 'rest/resource/' + resource;
     return this.http.get(url, { params: params })
   }
   
   getResource(id){
-    this.loading = true;
     let url = this.databaseURL + 'rest/resource/' + id;
     return this.http.get(url);
   }
 
   updateResource(typeResource: string, resource: any) {
-    this.loading = true;
-    console.log(typeResource, resource);
   }
 
   sendMail (content) {
     let url = this.databaseURL + 'rest/resource/sendmail';
     return this.http.put(url, content);
   }
+  
 
 }

@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
 
   LOGO = AppSettings.LOGO;
   alert: string;
+  loging: string = 'LOGIN';
 
   constructor(public router: Router,
     public _userService: UserService,
@@ -40,9 +41,6 @@ export class NavbarComponent implements OnInit {
 
   doLogin() {
     this._authService.loginUser(this.login.username, this.login.password);
-      if (this._resourceService.selectedFreeslot){
-        $('#FreeSlotModal').modal('show');
-      }
   }
 
   logout() {

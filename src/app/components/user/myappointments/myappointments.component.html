@@ -1,41 +1,37 @@
-<div  class="text-center" *ngIf="!_userService.user">
-    <i class="fa fa-refresh fa-spin main-color" style="font-size:50px"></i>
-</div>
-
-<div *ngIf="_userService.user">
-  <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length"  [@listAnimation]="state">
-      {{ 'YOU_DO_NOT_HAVE_APPOINTMENTS' | translate}}
+<div>
+  <div class="alert alert-success" role="alert" *ngIf="!_userService.user.appointments.length" [@listAnimation]="state">
+    {{ 'YOU_DO_NOT_HAVE_APPOINTMENTS' | translate}}
   </div>
-
   <div *ngIf="_userService.user.appointments.length">
     <h4>{{ 'THIS_ARE_YOUR_APPOINTMENTS' | translate}}</h4>
     <div id="container" [@listAnimation]="_userService.user.appointments.length">
-    <div *ngFor="let appointment of _userService.user.appointments; let i = index"  [@listAnimation]="state">
-      <div class="card sm-12">
-        <div class="card-header btn-main-color">{{ 'CONSULTANT ' | translate}}: {{appointment.doctorName}}</div>
-        <div class="card-body">
-          <h5 class="card-title">{{ 'DEPARTMENT ' | translate}}: {{appointment.department}}</h5>
-          <p class="card-text">{{ 'DATE ' | translate}}: {{appointment.date}} | {{ 'HOUR ' | translate}}: {{appointment.hour}}</p>
-          <small class="text-muted">{{ 'OPTIONS ' | translate}}</small>
-          <br />
-          <button type="button" class="btn background-secondary-color" (click)="print(appointment, i)">
-            {{ 'PRINT' | translate}}
-          </button>
-          <button type="button" class="btn background-secondary-color" (click)="addToCalendar(appointment, i)">
-            {{ 'ADD_TO_CALENDAR' | translate}}
-          </button>
-          <button type="button" class="btn background-secondary-color" data-toggle="modal" data-target="#CancelAppointmentModal" 
-                (click)="selectSlotToCancel(appointment, i)">
-            {{ 'DELETE' | translate}}
-          </button>
+      <div *ngFor="let appointment of _userService.user.appointments; let i = index" [@listAnimation]="state">
+        <div class="card sm-12">
+          <div class="card-header btn-main-color">{{ 'CONSULTANT' | translate}}: {{appointment.doctorName}}</div>
+          <div class="card-body">
+            <h5 class="card-title">{{ 'DEPARTMENT' | translate}}: {{appointment.department}}</h5>
+            <p class="card-text">{{ 'DATE' | translate}}: {{appointment.date}} | {{ 'HOUR' | translate}}:
+              {{appointment.hour}}</p>
+            <small class="text-muted">{{ 'OPTIONS' | translate}}</small>
+            <br />
+            <button type="button" class="btn background-secondary-color" (click)="print(appointment, i)">
+              {{ 'PRINT' | translate}}
+            </button>
+            <button type="button" class="btn background-secondary-color" (click)="addToCalendar(appointment, i)">
+              {{ 'ADD_TO_CALENDAR' | translate}}
+            </button>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#CancelAppointmentModal"
+              (click)="selectSlotToCancel(appointment, i)">
+              {{ 'CANCEL_APPOINTMENT' | translate}}
+            </button>
+          </div>
         </div>
+        <br />
+        <br />
       </div>
-      <br />
-      <br />
-    </div>
     </div>
   </div>
-  
+
 </div>
 
 
@@ -46,29 +42,32 @@
     <div class="modal-content">
 
       <!-- Modal Header -->
-      <div class="modal-body"><div class="modal-header">
-        <h4 class="modal-title">{{ 'ARE_YOU_SURE ' | translate}}</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal body -->
       <div class="modal-body">
-      <p>
-          {{ 'DO_YOU_WANT_DELETE_APPOINTMENT' | translate}} {{ 'WITH_DOCTOR' | translate}} {{selectedSlotToCancel?.doctorName}} {{ 'THE' | translate}} {{selectedSlotToCancel?.date}} {{ 'AT' | translate}} {{selectedSlotToCancel?.hour}}
-      </p>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAppointment()" data-dismiss="modal">
-              {{ 'YES ' | translate}}
-            </button>
-          </div>
-          <div class="col-md-6">
-            <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
-              {{ 'NO ' | translate}}
-            </button>
+        <div class="modal-header">
+          <h4 class="modal-title">{{ 'ARE_YOU_SURE' | translate}}</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>
+            {{ 'DO_YOU_WANT_DELETE_APPOINTMENT' | translate}} {{ 'WITH_DOCTOR' | translate}}
+            {{selectedSlotToCancel?.doctorName}} {{ 'THE' | translate}} {{selectedSlotToCancel?.date}} {{ 'AT' |
+            translate}} {{selectedSlotToCancel?.hour}}
+          </p>
+          <div class="row">
+            <div class="form-group col-md-6">
+              <button type="submit" class="btn btn-main-color btn-block" (click)="deleteAppointment()" data-dismiss="modal">
+                {{ 'YES' | translate}}
+              </button>
+            </div>
+            <div class="col-md-6">
+              <button type="submit" class="btn btn-secondary btn-block" data-dismiss="modal">
+                {{ 'NO' | translate}}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
       </div>
     </div>

@@ -23,6 +23,7 @@ export class AuthService {
 
   databaseURL = AppSettings.DATABASEURL;
   alert: string;
+  loading: boolean;
 
   constructor(public router: Router,
     public http: HttpClient,
@@ -33,12 +34,14 @@ export class AuthService {
     }
 
   loginUser(username, password){
+    this.loading = true;
     if (username && password) {
       let data = { username, password };
       this.getUserToken(data);
 
     } else {
-     this.alert = "Please fill your email and password.";
+      this.alert = "Please fill your email and password.";
+      this.loading = false;
     }
     
   }
@@ -64,8 +67,10 @@ export class AuthService {
           } else if (response.METADATA.STATUS == AppConstants.STATUS.RESENDACTIVATION)  {
             this.alert = "Please confirm your mail from the email we have sent you before accessing the portal.";
           }
+          this.loading = false;
         }, err => {
           this.alert = "User and/or password incorrect.";
+          this.loading = false;
         }
       );
   }

@@ -1,32 +1,16 @@
 @import './variables';
 @import './mixins';
 
-// Date Picker
-.ngx-datepicker-container[_ngcontent-c3]{
-    z-index: 1; 
+
+
+.nav-tabs .nav-link.active {
+    background-color: $secondary-color;
+    color: white;
 }
 
-.datepicker-container .datepicker-input-container .datepicker-input{ width: 100px !important; }
-
-.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-calendar-container[_ngcontent-c3]{
-  margin-left: -125px; 
+a{
+    color: $main-color;
 }
-
-.is-today{
-  color: white !important;
-  background: $secondary-color !important;
-}
-
-.is-selected[_ngcontent-c3] {
-  background: $main-color !important;
-}
-
-.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-input[_ngcontent-c3]{
-    border: 0 !important;
-    width: auto !important;
-}
-
-// END Date Picker
 
 .main-container{
     margin-top: 20px;
@@ -77,4 +61,31 @@ a:hover
     background-color: $secondary-color;
     border-color: $secondary-color;
 }
+
+// Date Picker
+.ngx-datepicker-container[_ngcontent-c3]{
+    z-index: 1; 
+}
+
+.datepicker-container .datepicker-input-container .datepicker-input{ width: 100px !important; }
+
+.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-calendar-container[_ngcontent-c3]{
+  margin-left: -125px; 
+}
+
+.is-today{
+  color: white !important;
+  background: $secondary-color !important;
+}
+
+.is-selected[_ngcontent-c3] {
+  background: $main-color !important;
+}
+
+.ngx-datepicker-container[_ngcontent-c3] .ngx-datepicker-input[_ngcontent-c3]{
+    border: 0 !important;
+    width: auto !important;
+}
+
+// END Date Picker
 

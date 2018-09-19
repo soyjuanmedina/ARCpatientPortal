@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {TranslateService} from 'ng2-translate';
 import 'rxjs/add/operator/map';
+declare var $: any; // TODO hide modal in othe way
 
 // App Settings
 import { AppSettings } from '../appSettings';
@@ -58,17 +59,22 @@ export class UserService {
             }
             sessionStorage.setItem('dataPatient', JSON.stringify(this.user));
             this.translate.use(this.user.language);
-            if (this.user.role == '2') {
+            console.log(this.user);
+            if (this.user.role == 'admin') {
               this.router.navigate(['/admin']);
             }
             if (this.user.status == '0') {
               this.router.navigate(['/bookappointments']);
             }
           }
-          this.user.appointments = AppConstants.DUMMYSLOTS;
           this.getPatientAppointments().subscribe(data => {
           });
           this.loading = false;
+          console.log('getUserToken');
+          if (this._resourceService.selectedFreeslot) {
+            console.log('confreeslot');
+            $('#FreeSlotModal').modal('show');
+          }
         },
         response => {
         },
